@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="col-sm-6 col-sm-offset-3">
+    <h1><center>{{title }}</center></h1>
+    <form method='GET' action='' class='row'>
+        <div class='col-sm-6'>
+            <div class='input-group'>
+                <input class='form-control' type='text' name='q' placeholder='Search posts' value='{{ request.GET.q }}'/>
+                <span class='input-group-btn'>
+                    <!-- <input class='btn btn-default' type='submit' value='Search' /> -->
+                    <button class='btn btn-default' type='submit'>Search <i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+</form>
+
+{% for obj in object_list %}
+<div class="row">
+    <div class="col-sm-6">
+        <div class="thumbnail">
+            {% if obj.image %}
+            <img src="{{ obj.image.url }}" class="img-responsive" />
+            {% endif %}
+            <!--<img src="..." alt="...">-->
+            <div class="caption">
+            <h3><a href=' # '>{{obj.title}}</a><small> {{obj.timestamp|timesince}} ago</small></h3>
+                <p>{{obj.content|linebreaks|truncatechars:50}}<br/></p><br/>
+                <p><a href='{{ obj.get_absolute_url }}' class="btn btn-primary" role="button"> View </a></p>
+        </div>
+    </div>
+    </div>
+    <hr/>
+</div>
+
+
+{% endfor %}
+
+    </div>
+<div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+        <a href="?{{ page_request_var }}={{ object_list.previous_page_number}}">previous</a>
+        {% endif %}
+        <span class="current">
+            page{{ object_list.number }} of {{ object_list.paginator.num_pages }}
+        </span>
+        {% if object_list.has_next %}
+        <!--<a href="?page={{ object_list.next_page_number }}">next</a>-->
+        <a href="?{{ page_request_var }}={{ object_list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+ <!--For advert-->
+    <div class="p-3">
+            <h4 class="font-italic">Advert</h4>
+            <ol class="list-unstyled">
+              <li><a href="http://getbootstrap.com/docs/4.0/examples/blog/#">GitHub</a></li>
+              <li><a href="http://getbootstrap.com/docs/4.0/examples/blog/#">Twitter</a></li>
+              <li><a href="http://getbootstrap.com/docs/4.0/examples/blog/#">Facebook</a></li>
+            </ol>
+          </div>
+        </aside><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+                 <!--Footer-->
+<div class="col-sm-12 col-sm-offset-4">
+ <footer class="blog-footer">
+      <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p>
+        <a href="http://getbootstrap.com/docs/4.0/examples/blog/#">Back to top</a>
+      </p>
+    </footer>
+</div>
+{% endblock content %}
+</body>

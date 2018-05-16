@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<! --DOCTYPE html-->
+<html>
+<head>
+    <link rel="stylesheet" href="base.css">
+    <!-- Latest compiled and minified CSS  -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJ1SAwiGgFAW/dAiS^JXm" crossorigin="anonymous">
+
+    <!-- Optional theme  -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+      integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+<link rel="stylesheet" href="{%static '/css/base.css '%}"/>
+    <title>{% block head_title %}HUSTLER{% endblock head_title %}</title>
+    <style>{% block style %}{% endblock style %}</style>
+</head>
+<body>
+{% include "messages_display.html" %}
+<div class="container">
+{% block content%} {% endblock%}
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-
+JZR6Spejh4U02d8j0t6vLEHfe/JQGiRRsQQxSfFWpi1MquVdAyjUar5+76PVCmY1" crossorigin="anonymous"></script>
+<!-- Latest compiled and minified JavaScript  -->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384- -->
+<!--OmSbJDEHialfmuBBQP6A4Qrprq50Vfw37PRR3j5ELqxss1yVq0tnepnHVP9J7xS" crossorigin="anonymous"></script>-->
+</body>
+</html>

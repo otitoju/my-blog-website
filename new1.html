@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<html>
+	<head>
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+            <!-- Optional theme -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+            <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' >
+    </head>
+
+    <body>
+
+			<center><h1>WELCOME TO MY BLOG WEBSITE</h1></center>
+        <div class="col-sm-4 col-sm-offset-2">
+			<form action="." method="POST">{%csrf_token%}
+                <div class="row">
+                {% for obj in queryset_list %}
+                    <div class="thumbnail">
+                        {% if obj.image %}
+                            <img src="{{ obj.image.url }}" class="img-responsive" />
+                        {% endif %}
+                        <div class="caption">
+                            <h3><a href ='{% url "detail" %}'>{{ obj.title }}</a><small>{{obj.timestamp|timesince}} ago</small></h3>
+                            <p>{{ obj.content|linebreaks|truncatechars:20 }}<br/></p>
+                            <p>Author:{{obj.user}}</p>
+                            <p><a href='{% url "detail" %}' class="btn btn-primary" role="button"> View </a></p>
+
+
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+			</form>
+        </div>
+    </body>
+</html>
+
+            <!--{% if obj.image %}-->
+            <!--<img src="{{ obj.image.url }}" class="img-responsive" />-->
+            <!--{% endif %}-->
+            <!--&lt;!&ndash;<img src="..." alt="...">&ndash;&gt;-->
+
+

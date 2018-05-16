@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1><br><b><center>WELCOME TO MY BLOG WEBSITE</center></br></b></h1>
+<div class="col-sm-8 col-sm-offset-4">
+    <h1>{{ title}}</h1>
+<div class="row">
+{% for  obj in object_list %}
+
+
+
+
+    <div class="col-sm-6">
+        <div class="thumbnail">
+            {% if obj.image %}
+            <img src="{{ obj.image.url }}" class="img-responsive" />
+            {% endif %}
+            <!--<img src="..." alt="...">-->
+            <div class="caption">
+            <h3><a href='{{obj.get_absolute_url}}'>{{obj.title}}</a><small> {{obj.timestamp|timesince}} ago</small></h3>
+                <p>{{obj.content|linebreaks|truncatechars:20}}<br/></p><br/>
+                <p><a href='{{ obj.get_absolute_url }}' class="btn btn-primary" role="button"> View </a></p>
+        </div>
+    </div>
+    </div>
+    <hr/>
+
+{% endfor %}
+    </div>
+</div>
+{% endblock content %}
